@@ -87,5 +87,9 @@ pub use usememo::*;
 mod uselock;
 pub use uselock::*;
 
+mod useasynclock;
+pub use useasynclock::*;
+
 mod userootcontext;
+
 pub use userootcontext::*;
