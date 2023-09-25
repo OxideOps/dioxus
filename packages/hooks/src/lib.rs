@@ -84,5 +84,8 @@ pub use usecallback::*;
 mod usememo;
 pub use usememo::*;
 
+mod uselock;
+pub use uselock::*;
+
 mod userootcontext;
 pub use userootcontext::*;
