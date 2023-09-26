@@ -78,10 +78,10 @@ type ProvidedState<T> = Rc<RefCell<ProvidedStateInner<T>>>;
 
 // Tracks all the subscribers to a shared State
 pub(crate) struct ProvidedStateInner<T> {
-    value: T,
-    notify_any: Arc<dyn Fn(ScopeId)>,
-    consumers: HashSet<ScopeId>,
-    gen: usize,
+    pub(crate) value: T,
+    pub(crate) notify_any: Arc<dyn Fn(ScopeId)>,
+    pub(crate) consumers: HashSet<ScopeId>,
+    pub(crate) gen: usize,
 }
 
 impl<T> ProvidedStateInner<T> {
