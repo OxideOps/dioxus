@@ -10,7 +10,6 @@ pub use dioxus_debug_cell::{
 
 #[cfg(not(debug_assertions))]
 pub use std::cell::{BorrowError, BorrowMutError, Ref, RefCell, RefMut};
-use std::ops::{Deref, DerefMut};
 
 #[macro_export]
 macro_rules! debug_location {
@@ -79,10 +78,10 @@ type ProvidedState<T> = Rc<RefCell<ProvidedStateInner<T>>>;
 
 // Tracks all the subscribers to a shared State
 pub(crate) struct ProvidedStateInner<T> {
-    pub(crate) value: T,
-    pub(crate) notify_any: Arc<dyn Fn(ScopeId)>,
-    pub(crate) consumers: HashSet<ScopeId>,
-    pub(crate) gen: usize,
+    value: T,
+    notify_any: Arc<dyn Fn(ScopeId)>,
+    consumers: HashSet<ScopeId>,
+    gen: usize,
 }
 
 impl<T> ProvidedStateInner<T> {
@@ -91,20 +90,6 @@ impl<T> ProvidedStateInner<T> {
         for consumer in self.consumers.iter() {
             (self.notify_any)(*consumer);
         }
-    }
-}
-
-impl<T> Deref for ProvidedStateInner<T> {
-    type Target = T;
-
-    fn deref(&self) -> &Self::Target {
-        &self.value
-    }
-}
-
-impl<T> DerefMut for ProvidedStateInner<T> {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.value
     }
 }
 
