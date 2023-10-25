@@ -100,3 +100,6 @@ pub use use_lock::*;
 
 mod use_async_lock;
 pub use use_async_lock::*;
+
+mod use_shared_lock;
+pub use use_shared_lock::*;
